@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drive Up Roleplay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="topbar">
+      <h1>🛒 Drive Up</h1>
+      <button onclick="showCart()">🛍️ Cart <span id="cartCount">0</span></button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section id="home" class="screen active">
+      <div class="welcome">
+        <h2>Welcome!</h2>
+        <p>Shop for pretend items and place a Drive Up roleplay order.</p>
+
+        <button class="bigButton" onclick="showShop()">
+          🛍️ Start Shopping
+        </button>
+
+        <button class="secondaryButton" onclick="showEmployee()">
+          👷 Employee Mode
+        </button>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section id="shop" class="screen">
+
+      <div class="pageTitle">
+        <button onclick="goHome()">←</button>
+        <h2>Shop</h2>
+      </div>
+
+      <input
+        id="search"
+        type="text"
+        placeholder="🔎 Search pretend items..."
+        oninput="searchProducts()"
+      >
+
+      <div class="categories">
+        <button onclick="filterCategory('All')">All</button>
+        <button onclick="filterCategory('Food')">🍎 Food</button>
+        <button onclick="filterCategory('Toys')">🧸 Toys</button>
+        <button onclick="filterCategory('Electronics')">🎮 Electronics</button>
+        <button onclick="filterCategory('Home')">🏠 Home</button>
+        <button onclick="filterCategory('Pets')">🐶 Pets</button>
+      </div>
+
+      <div id="products" class="products"></div>
+
+    </section>
+
+    <!-- CART -->
+    <section id="cart" class="screen">
+
+      <div class="pageTitle">
+        <button onclick="showShop()">←</button>
+        <h2>Your Cart</h2>
+      </div>
+
+      <div id="cartItems"></div>
+
+      <div class="cartTotal">
+        <h2>Total: $<span id="total">0.00</span></h2>
+        <button class="bigButton" onclick="checkout()">
+          Continue to Checkout
+        </button>
+      </div>
+
+    </section>
+
+    <!-- CHECKOUT -->
+    <section id="checkout" class="screen">
+
+      <div class="pageTitle">
+        <button onclick="showCart()">←</button>
+        <h2>Checkout</h2>
+      </div>
+
+      <div class="checkoutCard">
+
+        <h3>Guest Information</h3>
+
+        <input
+          id="guestName"
+          type="text"
+          placeholder="Enter your name"
+        >
+
+        <h3>Pickup Type</h3>
+
+        <div class="pickupChoice">
+          🚗 Drive Up
+        </div>
+
+        <h3>Order Summary</h3>
+
+        <div id="checkoutSummary"></div>
+
+        <button class="bigButton" onclick="placeOrder()">
+          ✅ Place Pretend Order
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- ORDER -->
+    <section id="order" class="screen">
+
+      <div class="orderSuccess">
+
+        <div class="successIcon">✓</div>
+
+        <h2>Order Placed!</h2>
+
+        <p>Your pretend order has been sent to the Drive Up employee.</p>
+
+        <div class="orderBox">
+
+          <p><strong>Order:</strong> <span id="orderNumber"></span></p>
+
+          <p><strong>Name:</strong> <span id="orderName"></span></p>
+
+          <p>
+            <strong>Status:</strong>
+            <span id="orderStatus">Preparing</span>
+          </p>
+
+        </div>
+
+        <button
+          id="onWayButton"
+          class="bigButton"
+          onclick="onMyWay()"
+        >
+          🚗 I'm On My Way
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- PARKING -->
+    <section id="parking" class="screen">
+
+      <div class="parkingPage">
+
+        <h2>🚗 You've Arrived!</h2>
+
+        <p>Select your parking space.</p>
+
+        <div id="parkingSpaces" class="spaces"></div>
+
+      </div>
+
+    </section>
+
+    <!-- PICKUP CODE -->
+    <section id="pickup" class="screen">
+
+      <div class="pickupPage">
+
+        <div class="successIcon">✓</div>
+
+        <h2>You're Checked In!</h2>
+
+        <p>Tell the Drive Up employee:</p>
+
+        <div class="pickupCode">
+          <span id="pickupCode"></span>
+        </div>
+
+        <div class="infoBox">
+          <p>🅿️ Parking Space</p>
+          <strong id="selectedSpace"></strong>
+        </div>
+
+        <div class="infoBox">
+          <p>📦 Order Number</p>
+          <strong id="pickupOrder"></strong>
+        </div>
+
+        <p class="smallText">
+          The employee can now bring your order to your space.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- EMPLOYEE -->
+    <section id="employee" class="screen">
+
+      <div class="pageTitle">
+        <button onclick="goHome()">←</button>
+        <h2>👷 Employee</h2>
+      </div>
+
+      <div class="employeeHeader">
+        <p>Drive Up Orders</p>
+        <button onclick="refreshEmployee()">🔄 Refresh</button>
+      </div>
+
+      <div id="employeeOrders"></div>
+
+    </section>
+
+  </main>
+
+  <nav class="bottomNav">
+
+    <button onclick="goHome()">
+      🏠
+      <small>Home</small>
+    </button>
+
+    <button onclick="showShop()">
+      🛍️
+      <small>Shop</small>
+    </button>
+
+    <button onclick="showCart()">
+      🛒
+      <small>Cart</small>
+    </button>
+
+    <button onclick="showEmployee()">
+      👷
+      <small>Employee</small>
+    </button>
+
+  </nav>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
